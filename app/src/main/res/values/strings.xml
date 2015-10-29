@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FDPApp</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="exibirmensagem">Exibir Mensagem</string>
+    <string name="somar">+</string>
+    <string name="subtrair">-</string>
+    <string name="multiplicar">*</string>
+    <string name="dividir">/</string>
+</resources>
