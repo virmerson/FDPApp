@@ -14,41 +14,41 @@ public class MainActivity extends Activity{
 
 
 
-    private final String  TAG = "MainActivity";
+    private final String  TAG = "FDPMainActivity";
 
     @Override
     protected void onDestroy() {
-        Log.i(TAG, "CHAMOU ON DESTROY");
+        Log.i(TAG, "CHAMOU ON DESTROY " + TAG);
         super.onDestroy();
     }
 
     @Override
     protected void onStop() {
-        Log.i(TAG, "CHAMOU ON STOP");
+        Log.i(TAG, "CHAMOU ON STOP " + TAG);
         super.onStop();
     }
 
     @Override
     protected void onPause() {
-        Log.i(TAG, "CHAMOU ON PAUSE");
+        Log.i(TAG, "CHAMOU ON PAUSE " + TAG);
         super.onPause();
     }
 
     @Override
     protected void onStart() {
-        Log.i(TAG, "CHAMOU ON START");
+        Log.i(TAG, "CHAMOU ON START " + TAG);
         super.onStart();
     }
 
     @Override
     protected void onResume() {
-        Log.i(TAG, "CHAMOU ON RESUME");
+        Log.i(TAG, "CHAMOU ON RESUME " + TAG);
         super.onResume();
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Log.i(TAG, "CHAMOU ON CREATE");
+        Log.i(TAG, "CHAMOU ON CREATE "+ TAG);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 

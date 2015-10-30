@@ -8,4 +8,6 @@
     <string name="subtrair">-</string>
     <string name="multiplicar">*</string>
     <string name="dividir">/</string>
+    <string name="resultado">Resultado</string>
+    <string name="fechar">Fechar</string>
 </resources>

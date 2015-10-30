@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/tv_label"
-        android:text="Resultado:"
+        android:text="@string/resultado"
         />
 
     <TextView
@@ -17,6 +17,12 @@
 
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/fechar"
+        android:id="@+id/bt_fechar"
+        />
 
 
 </LinearLayout>
