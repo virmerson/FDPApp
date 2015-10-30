@@ -9,6 +9,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+
 /**
  * Created by Virmerson on 10/22/15.
  */
@@ -16,30 +20,29 @@ public class ResultadoActivity extends Activity{
 
     private final String TAG = "FDPResultadoActivity";
 
+    @Bind(R.id.tv_resultado)
+    TextView tvResultado;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.resultado);
+        ButterKnife.bind(this);
+
         Log.i(TAG, "CHAMOU on CREATE " + TAG);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
         Double calculo = bundle.getDouble("calculo");
 
-        TextView tvResultado= (TextView) findViewById(R.id.tv_resultado);
+
         tvResultado.setText(calculo.toString());
 
-        Button btFechar = (Button) findViewById(R.id.bt_fechar);
-
-        btFechar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-
-
         //Toast.makeText(this, calculo.toString(), Toast.LENGTH_SHORT).show();
+    }
+    @OnClick(R.id.bt_fechar)
+    public void fechar (){
+        finish();
     }
 
     @Override
