@@ -8,15 +8,25 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".calculo.CalcActivity"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
-        <activity android:name=".ResultadoActivity"></activity>
+        <activity android:name=".calculo.ResultadoActivity">
+
+
+        </activity>
+
+        <activity android:name=".agenda.AgendaActivity">
+            <intent-filter>
+
+                <action android:name="android.intent.action.MAIN"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".agenda.AgendaListaActivity"/>
 
     </application>
 

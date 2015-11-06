@@ -10,4 +10,7 @@
     <string name="dividir">/</string>
     <string name="resultado">Resultado</string>
     <string name="fechar">Fechar</string>
+    <string name="nome">Nome:</string>
+    <string name="banana">Banana</string>
+    <string name="salvar">Salvar</string>
 </resources>

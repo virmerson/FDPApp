@@ -1,23 +1,23 @@
-package br.com.fabricadeprogramador.fdpapp;
+package br.com.fabricadeprogramador.fdpapp.calculo;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
+import java.io.Serializable;
+
+import br.com.fabricadeprogramador.fdpapp.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends Activity {
+public class CalcActivity extends Activity {
 
 
-    private final String TAG = "FDPMainActivity";
+    private final String TAG = "FDPCalcActivity";
 
     @Override
     protected void onDestroy() {
@@ -60,7 +60,7 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         Log.i(TAG, "CHAMOU ON CREATE " + TAG);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.calc);
 
         ButterKnife.bind(this);
 
@@ -112,14 +112,32 @@ public class MainActivity extends Activity {
     }
 
     public void mostrarResultado(Double resultado){
-        Intent irParaResultado = new Intent(MainActivity.this, ResultadoActivity.class);
+        Intent irParaResultado = new Intent(CalcActivity.this, ResultadoActivity.class);
+
+
 
         Bundle bundle = new Bundle();
-        bundle.putDouble("calculo", resultado);
+       // bundle.putDouble("calculo", calc_resultado);
+
+        bundle.putSerializable("calculo", new Resultado(resultado));
+
 
         irParaResultado.putExtras(bundle);
 
         startActivity(irParaResultado);
     }
 
+}
+
+class Resultado implements Serializable {
+    private Double res;
+
+    public Resultado(Double res){
+        this.res=res;
+
+    }
+
+    public Double getR() {
+        return res;
+    }
 }

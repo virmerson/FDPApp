@@ -1,14 +1,12 @@
-package br.com.fabricadeprogramador.fdpapp;
+package br.com.fabricadeprogramador.fdpapp.calculo;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import br.com.fabricadeprogramador.fdpapp.R;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -26,17 +24,19 @@ public class ResultadoActivity extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.resultado);
+        setContentView(R.layout.calc_resultado);
         ButterKnife.bind(this);
 
         Log.i(TAG, "CHAMOU on CREATE " + TAG);
 
         Intent intent = getIntent();
         Bundle bundle = intent.getExtras();
-        Double calculo = bundle.getDouble("calculo");
+        //Double calculo = bundle.getDouble("calculo");
+        Resultado resultado = (Resultado) bundle.getSerializable("calculo");
 
+        tvResultado.setText(resultado.getR().toString());
 
-        tvResultado.setText(calculo.toString());
+        //tvResultado.setText(calculo.toString());
 
         //Toast.makeText(this, calculo.toString(), Toast.LENGTH_SHORT).show();
     }
