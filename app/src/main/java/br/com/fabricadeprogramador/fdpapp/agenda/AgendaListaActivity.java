@@ -6,11 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import br.com.fabricadeprogramador.fdpapp.R;
+import br.com.fabricadeprogramador.fdpapp.agenda.adapter.PessoaListAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,10 +34,11 @@ public class AgendaListaActivity extends AppCompatActivity{
         Bundle bundle = i.getExtras();
         String nome= bundle.getString("nome");
 
-       GerenciadorAgenda.adicionar(nome);
+       GerenciadorAgenda.adicionar(new Pessoa(nome, R.drawable.foto1));
 
+        PessoaListAdapter adapter = new PessoaListAdapter(this,GerenciadorAgenda.getPessoaList());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, GerenciadorAgenda.getNomes());
+        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, GerenciadorAgenda.getPessoaList());
 
        lista.setAdapter(adapter);
 
