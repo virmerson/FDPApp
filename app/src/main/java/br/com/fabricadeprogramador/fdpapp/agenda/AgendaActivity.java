@@ -1,13 +1,18 @@
 package br.com.fabricadeprogramador.fdpapp.agenda;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
+
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+
+import com.android.camera.CropImageIntentBuilder;
+
+import java.io.File;
 
 import br.com.fabricadeprogramador.fdpapp.R;
 import butterknife.Bind;
@@ -21,11 +26,15 @@ public class AgendaActivity extends AppCompatActivity{
 
 
     private static final  int CAMERA_REQUEST = 123 ;
+    private static final  int CROP_REQUEST = 456 ;
+
     @Bind(R.id.ed_nome)
     EditText edNome;
 
     @Bind(R.id.pessoa_imagem_cad)
     ImageView imagemPessoa;
+
+    Uri imagemOriginalUri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,22 +52,38 @@ public class AgendaActivity extends AppCompatActivity{
         startActivity(irParaAgendaLista);
     }
 
-
+    File imagemOriginal;
 
     @OnClick(R.id.pessoa_imagem_cad)
       public void mudarImagem(){
+        imagemOriginal = new File (getExternalCacheDir(),"img");
+        imagemOriginalUri = Uri.fromFile(imagemOriginal);
+
         Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, imagemOriginalUri);
+
         startActivityForResult(cameraIntent, CAMERA_REQUEST);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        File imagemCortada = new File(getFilesDir(), "img.jpg");
 
+        //A camera respondeu com foto original
         if(requestCode==CAMERA_REQUEST && resultCode==RESULT_OK){
-            Bitmap imagem = (Bitmap)data.getExtras().get("data");
-            imagemPessoa.setImageBitmap(imagem);
+            //Chamada para O Crop
+            Uri imageContadaUri = Uri.fromFile(imagemCortada);
 
+            CropImageIntentBuilder crop = new CropImageIntentBuilder(200,200,imageContadaUri);
+
+            crop.setSourceImage(imagemOriginalUri);
+
+            startActivityForResult(crop.getIntent(AgendaActivity.this),CROP_REQUEST );
+
+        }else if (requestCode==CROP_REQUEST && resultCode==RESULT_OK){
+            //Resposta do Crop
+            imagemPessoa.setImageBitmap(BitmapFactory.decodeFile(imagemCortada.getAbsolutePath()));
         }
     }
 }

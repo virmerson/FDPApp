@@ -1,6 +1,9 @@
 package br.com.fabricadeprogramador.fdpapp.agenda;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ArrayAdapter;
@@ -30,8 +33,11 @@ public class AgendaListaActivity extends AppCompatActivity{
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
         String nome= bundle.getString("nome");
+        Bitmap imagem = (Bitmap) bundle.get("img");
 
-       GerenciadorAgenda.adicionar(new Pessoa(nome, R.drawable.foto1));
+
+
+       GerenciadorAgenda.adicionar(new Pessoa(nome,imagem));
 
         PessoaListAdapter adapter = new PessoaListAdapter(this,GerenciadorAgenda.getPessoaList());
 

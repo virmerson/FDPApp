@@ -28,6 +28,8 @@
 
         <activity android:name=".agenda.AgendaListaActivity"/>
 
+        <activity android:name="com.android.camera.CropImage" />
+
     </application>
 
 </manifest>

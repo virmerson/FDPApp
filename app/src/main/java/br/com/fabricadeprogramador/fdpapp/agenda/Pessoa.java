@@ -1,5 +1,7 @@
 package br.com.fabricadeprogramador.fdpapp.agenda;
 
+import android.graphics.Bitmap;
+
 import java.io.Serializable;
 
 /**
@@ -12,7 +14,11 @@ public class Pessoa implements Serializable {
     private String email;
     private String telefone;
     private int imagem;
-
+    public Bitmap img;
+    public Pessoa(String nome, Bitmap imagem) {
+        this.nome = nome;
+        this.img = imagem;
+    }
 
 
     public Long getId() {
