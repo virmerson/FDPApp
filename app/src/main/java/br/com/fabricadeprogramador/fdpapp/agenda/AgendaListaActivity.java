@@ -21,9 +21,6 @@ public class AgendaListaActivity extends AppCompatActivity{
     ListView lista;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
