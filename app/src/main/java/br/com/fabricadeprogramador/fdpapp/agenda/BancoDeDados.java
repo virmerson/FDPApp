@@ -2,16 +2,20 @@ package br.com.fabricadeprogramador.fdpapp.agenda;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Virmerson on 11/17/15.
  */
 public class BancoDeDados extends SQLiteOpenHelper {
 
-    private final String NOME_BANCO= "pessoasdb";
-    private final int VERSAO_BANCO =2;
+    private static  final String NOME_BANCO= "pessoasdb";
+    private static final int VERSAO_BANCO =1;
 
 
     public BancoDeDados(Context context) {
@@ -20,7 +24,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql = "create table tbpessoa ( id integer primary key, nomemae text, nome text, email text, telefone text )";
+        String sql = "create table tbpessoa ( id integer primary key,  nome text, email text, telefone text )";
         db.execSQL(sql);
 
     }
@@ -41,9 +45,44 @@ public class BancoDeDados extends SQLiteOpenHelper {
         values.put("email", pessoa.getEmail());
         values.put("telefone", pessoa.getTelefone());
 
-        db.insert("tbpessoa",null, values);
+        db.insert("tbpessoa", null, values);
 
         db.close();
 
     }
+
+    public List<Pessoa> buscarTodos(){
+
+        List<Pessoa> lista =  new ArrayList<>();
+        //Preencher
+
+        String sql = "select * from tbpessoa";
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor cursor = db.rawQuery(sql, null);
+
+        if( cursor.moveToFirst()){
+
+
+            do{
+               //Pega do cursor e coloca em objeto Pessoa
+                Pessoa pessoa = new Pessoa();
+                pessoa.setId(cursor.getLong(0));
+                pessoa.setNome(cursor.getString(1));
+                pessoa.setEmail(cursor.getString(2));
+                pessoa.setTelefone(cursor.getString(3));
+                //Coloca na Lista
+
+                lista.add(pessoa);
+
+            }while (cursor.moveToNext());
+
+        }
+
+        return lista;
+    }
+
+
+
+
+
 }

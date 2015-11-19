@@ -32,14 +32,28 @@ public class AgendaListaActivity extends AppCompatActivity{
 
         Intent i = getIntent();
         Bundle bundle = i.getExtras();
+
+        //Capturando Dados do Bundle
         String nome= bundle.getString("nome");
+        String email= bundle.getString("email");
+        String telefone= bundle.getString("telefone");
         Bitmap imagem = (Bitmap) bundle.get("img");
 
+        //Criando objeto pessoa com dados vindos da tela anterior
+        Pessoa pessoa = new Pessoa();
+        pessoa.setNome(nome);
+        pessoa.setEmail(email);
+        pessoa.setTelefone(telefone);
+       // pessoa.setImagem(imagem);
 
+        //Instanciando objeto para salvar no banco
+        BancoDeDados banco = new BancoDeDados(this);
 
-       GerenciadorAgenda.adicionar(new Pessoa(nome,imagem));
+        //Salvando
+        banco.salvar(pessoa);
 
-        PessoaListAdapter adapter = new PessoaListAdapter(this,GerenciadorAgenda.getPessoaList());
+       //Listar as pessoas
+        PessoaListAdapter adapter = new PessoaListAdapter(this,banco.buscarTodos());
 
         //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, GerenciadorAgenda.getPessoaList());
 
