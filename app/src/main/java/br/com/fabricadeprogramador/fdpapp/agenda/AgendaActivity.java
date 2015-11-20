@@ -31,6 +31,9 @@ public class AgendaActivity extends AppCompatActivity{
     @Bind(R.id.ed_nome)
     EditText edNome;
 
+    @Bind(R.id.ed_id)
+    EditText edId;
+
     @Bind(R.id.pessoa_imagem_cad)
     ImageView imagemPessoa;
 
@@ -46,9 +49,12 @@ public class AgendaActivity extends AppCompatActivity{
     @OnClick(R.id.bt_salvar)
     public void salvar(){
         String nome = edNome.getText().toString();
+        String id = edId.getText().toString();
 
         Intent irParaAgendaLista = new Intent(AgendaActivity.this, AgendaListaActivity.class);
+        irParaAgendaLista.putExtra("id", new Long(id));
         irParaAgendaLista.putExtra("nome", nome);
+
         startActivity(irParaAgendaLista);
     }
 

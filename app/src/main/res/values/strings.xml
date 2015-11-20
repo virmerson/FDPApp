@@ -13,4 +13,6 @@
     <string name="nome">Nome:</string>
     <string name="banana">Banana</string>
     <string name="salvar">Salvar</string>
+    <string name="id">ID</string>
+    <string name="maca">Maçã</string>
 </resources>

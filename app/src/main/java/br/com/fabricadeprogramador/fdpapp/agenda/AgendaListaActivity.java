@@ -34,6 +34,7 @@ public class AgendaListaActivity extends AppCompatActivity{
         Bundle bundle = i.getExtras();
 
         //Capturando Dados do Bundle
+        Long id= bundle.getLong("id");
         String nome= bundle.getString("nome");
         String email= bundle.getString("email");
         String telefone= bundle.getString("telefone");
@@ -41,6 +42,7 @@ public class AgendaListaActivity extends AppCompatActivity{
 
         //Criando objeto pessoa com dados vindos da tela anterior
         Pessoa pessoa = new Pessoa();
+        pessoa.setId(id);
         pessoa.setNome(nome);
         pessoa.setEmail(email);
         pessoa.setTelefone(telefone);

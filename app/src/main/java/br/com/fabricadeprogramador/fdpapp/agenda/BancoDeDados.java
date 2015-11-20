@@ -45,8 +45,12 @@ public class BancoDeDados extends SQLiteOpenHelper {
         values.put("email", pessoa.getEmail());
         values.put("telefone", pessoa.getTelefone());
 
-        db.insert("tbpessoa", null, values);
-
+        if (pessoa.getId()==null) {
+            db.insert("tbpessoa", null, values);
+        }else {
+            //update tbpessoa set nome='jao', email ='jao@htcursos.com', telefone= '(67)3387-2941' where id=10
+            db.update("tbpessoa", values, "id = ?", new String[]{pessoa.getId().toString()});
+        }
         db.close();
 
     }

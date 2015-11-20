@@ -45,6 +45,7 @@ public class PessoaListAdapter extends ArrayAdapter<Pessoa> {
 
         Pessoa pessoa = getItem(position);
         if (pessoa!=null) {
+            holder.id.setText(pessoa.getId().toString());
             holder.nome.setText(pessoa.getNome());
             holder.imagem.setImageResource(pessoa.getImagem());
         }
@@ -56,6 +57,9 @@ public class PessoaListAdapter extends ArrayAdapter<Pessoa> {
     class ViewHolder {
         @Bind(R.id.pessoa_imagem)
         ImageView imagem;
+
+        @Bind(R.id.pessoa_id)
+        TextView id;
 
         @Bind(R.id.pessoa_nome)
          TextView nome;
