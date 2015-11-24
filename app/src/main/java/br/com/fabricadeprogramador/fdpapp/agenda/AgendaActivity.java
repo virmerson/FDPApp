@@ -51,11 +51,18 @@ public class AgendaActivity extends AppCompatActivity{
         String nome = edNome.getText().toString();
         String id = edId.getText().toString();
 
-        Intent irParaAgendaLista = new Intent(AgendaActivity.this, AgendaListaActivity.class);
-        irParaAgendaLista.putExtra("id", new Long(id));
-        irParaAgendaLista.putExtra("nome", nome);
+        //Criando objeto pessoa com dados vindos da tela anterior
+        Pessoa pessoa = new Pessoa();
+        if (id!=null && !id.isEmpty()) {
+            pessoa.setId(Long.parseLong(id));
+        }
+        pessoa.setNome(nome);
 
-        startActivity(irParaAgendaLista);
+
+        BancoDeDados bancoDeDados =  new BancoDeDados(this);
+        bancoDeDados.salvar(pessoa);
+
+        finish();
     }
 
     File imagemOriginal;

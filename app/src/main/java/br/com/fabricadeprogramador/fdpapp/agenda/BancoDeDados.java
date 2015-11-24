@@ -15,7 +15,7 @@ import java.util.List;
 public class BancoDeDados extends SQLiteOpenHelper {
 
     private static  final String NOME_BANCO= "pessoasdb";
-    private static final int VERSAO_BANCO =1;
+    private static final int VERSAO_BANCO =2;
 
 
     public BancoDeDados(Context context) {
@@ -45,7 +45,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
         values.put("email", pessoa.getEmail());
         values.put("telefone", pessoa.getTelefone());
 
-        if (pessoa.getId()==null) {
+        if (pessoa.getId()==null || pessoa.getId()==0) {
             db.insert("tbpessoa", null, values);
         }else {
             //update tbpessoa set nome='jao', email ='jao@htcursos.com', telefone= '(67)3387-2941' where id=10

@@ -29,42 +29,23 @@ public class AgendaListaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agenda_lista);
         ButterKnife.bind(this);
-
-        Intent i = getIntent();
-        Bundle bundle = i.getExtras();
-
-        //Capturando Dados do Bundle
-        Long id= bundle.getLong("id");
-        String nome= bundle.getString("nome");
-        String email= bundle.getString("email");
-        String telefone= bundle.getString("telefone");
-        Bitmap imagem = (Bitmap) bundle.get("img");
-
-        //Criando objeto pessoa com dados vindos da tela anterior
-        Pessoa pessoa = new Pessoa();
-        pessoa.setId(id);
-        pessoa.setNome(nome);
-        pessoa.setEmail(email);
-        pessoa.setTelefone(telefone);
-       // pessoa.setImagem(imagem);
-
-        //Instanciando objeto para salvar no banco
-        BancoDeDados banco = new BancoDeDados(this);
-
-        //Salvando
-        banco.salvar(pessoa);
-
-       //Listar as pessoas
-        PessoaListAdapter adapter = new PessoaListAdapter(this,banco.buscarTodos());
-
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, GerenciadorAgenda.getPessoaList());
-
-       lista.setAdapter(adapter);
-
     }
 
-    @OnClick(R.id.bt_fechar_agenda)
-    public void fechar (){
-        finish();
+    @Override
+    protected void onResume() {
+        super.onResume();
+        //Instanciando objeto para salvar no banco
+        BancoDeDados banco = new BancoDeDados(this);
+        //Listar as pessoas
+        PessoaListAdapter adapter = new PessoaListAdapter(this,banco.buscarTodos());
+
+        lista.setAdapter(adapter);
+    }
+
+    @OnClick(R.id.bt_novo)
+    public void novo(){
+        Intent irParaForm = new Intent(this, AgendaActivity.class);
+
+        startActivity(irParaForm);
     }
 }

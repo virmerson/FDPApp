@@ -12,9 +12,12 @@
 
 
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/bt_fechar_agenda"
-        android:text="@string/fechar"
-        />
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/bt_novo"
+    android:text="@string/Novo"
+    />
+
+
+
 </LinearLayout>
