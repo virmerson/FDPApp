@@ -36,7 +36,29 @@ public class AgendaListaActivity extends AppCompatActivity{
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(AgendaListaActivity.this, "Clicou no item!", Toast.LENGTH_SHORT).show();
+
+                Pessoa pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+
+                Intent irParaForm = new Intent(AgendaListaActivity.this, AgendaActivity.class);
+                irParaForm.putExtra("pessoaSel", pessoaSelecionada);
+
+                startActivity(irParaForm);
+                // Toast.makeText(AgendaListaActivity.this, "Clicou na pessoa " + pessoaSelecionada.getNome(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        lista.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
+                Pessoa pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
+
+                BancoDeDados bancoDeDados = new BancoDeDados(AgendaListaActivity.this);
+                bancoDeDados.excluir(pessoaSelecionada);
+
+                atualiza();
+
+                return true;
             }
         });
     }
@@ -44,6 +66,10 @@ public class AgendaListaActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        atualiza();
+    }
+
+    public void atualiza(){
         //Instanciando objeto para salvar no banco
         BancoDeDados banco = new BancoDeDados(this);
         //Listar as pessoas
@@ -51,7 +77,6 @@ public class AgendaListaActivity extends AppCompatActivity{
 
         lista.setAdapter(adapter);
     }
-
     @OnClick(R.id.bt_novo)
     public void novo(){
         Intent irParaForm = new Intent(this, AgendaActivity.class);

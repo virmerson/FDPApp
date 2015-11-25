@@ -44,6 +44,15 @@ public class AgendaActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.agenda);
         ButterKnife.bind(this);
+
+        Intent intent = getIntent();
+        Bundle extras = intent.getExtras();
+        if (extras!=null) {
+            Pessoa pessoa = (Pessoa) extras.get("pessoaSel");
+            edId.setText(pessoa.getId().toString());
+            edNome.setText(pessoa.getNome());
+        }
+
     }
 
     @OnClick(R.id.bt_salvar)

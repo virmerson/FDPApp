@@ -81,12 +81,16 @@ public class BancoDeDados extends SQLiteOpenHelper {
             }while (cursor.moveToNext());
 
         }
-
+        db.close();
         return lista;
     }
 
 
+    public void excluir(Pessoa pessoaSelecionada) {
+        SQLiteDatabase db = this.getWritableDatabase();
 
+        db.delete("tbpessoa", "id=?", new String[]{pessoaSelecionada.getId().toString()}  );
 
-
+        db.close();
+    }
 }
