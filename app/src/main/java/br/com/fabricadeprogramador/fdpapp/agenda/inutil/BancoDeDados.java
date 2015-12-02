@@ -1,4 +1,4 @@
-package br.com.fabricadeprogramador.fdpapp.agenda;
+package br.com.fabricadeprogramador.fdpapp.agenda.inutil;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -8,6 +8,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.fabricadeprogramador.fdpapp.agenda.model.Pessoa;
 
 /**
  * Created by Virmerson on 11/17/15.
@@ -45,11 +47,11 @@ public class BancoDeDados extends SQLiteOpenHelper {
         values.put("email", pessoa.getEmail());
         values.put("telefone", pessoa.getTelefone());
 
-        if (pessoa.getId()==null || pessoa.getId()==0) {
+        if (pessoa.getId()==0) {
             db.insert("tbpessoa", null, values);
         }else {
             //update tbpessoa set nome='jao', email ='jao@htcursos.com', telefone= '(67)3387-2941' where id=10
-            db.update("tbpessoa", values, "id = ?", new String[]{pessoa.getId().toString()});
+            db.update("tbpessoa", values, "id = ?", new String[]{String.valueOf(pessoa.getId())});
         }
         db.close();
 
@@ -89,7 +91,7 @@ public class BancoDeDados extends SQLiteOpenHelper {
     public void excluir(Pessoa pessoaSelecionada) {
         SQLiteDatabase db = this.getWritableDatabase();
 
-        db.delete("tbpessoa", "id=?", new String[]{pessoaSelecionada.getId().toString()}  );
+        db.delete("tbpessoa", "id=?", new String[]{String.valueOf(pessoaSelecionada.getId())}  );
 
         db.close();
     }

@@ -1,22 +1,21 @@
-package br.com.fabricadeprogramador.fdpapp.agenda;
+package br.com.fabricadeprogramador.fdpapp.agenda.activities;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.Toast;
+
+import java.util.List;
 
 import br.com.fabricadeprogramador.fdpapp.R;
+import br.com.fabricadeprogramador.fdpapp.agenda.model.Pessoa;
 import br.com.fabricadeprogramador.fdpapp.agenda.adapter.PessoaListAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import se.emilsjolander.sprinkles.Query;
 
 /**
  * Created by Virmerson on 11/5/15.
@@ -53,8 +52,7 @@ public class AgendaListaActivity extends AppCompatActivity{
 
                 Pessoa pessoaSelecionada = (Pessoa) parent.getItemAtPosition(position);
 
-                BancoDeDados bancoDeDados = new BancoDeDados(AgendaListaActivity.this);
-                bancoDeDados.excluir(pessoaSelecionada);
+                pessoaSelecionada.delete();
 
                 atualiza();
 
@@ -71,9 +69,9 @@ public class AgendaListaActivity extends AppCompatActivity{
 
     public void atualiza(){
         //Instanciando objeto para salvar no banco
-        BancoDeDados banco = new BancoDeDados(this);
+        List<Pessoa> consulta = Query.all(Pessoa.class).get().asList();
         //Listar as pessoas
-        PessoaListAdapter adapter = new PessoaListAdapter(this,banco.buscarTodos());
+        PessoaListAdapter adapter = new PessoaListAdapter(this,consulta);
 
         lista.setAdapter(adapter);
     }

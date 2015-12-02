@@ -1,4 +1,4 @@
-package br.com.fabricadeprogramador.fdpapp.agenda;
+package br.com.fabricadeprogramador.fdpapp.agenda.activities;
 
 import android.content.Intent;
 
@@ -15,6 +15,7 @@ import com.android.camera.CropImageIntentBuilder;
 import java.io.File;
 
 import br.com.fabricadeprogramador.fdpapp.R;
+import br.com.fabricadeprogramador.fdpapp.agenda.model.Pessoa;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -49,7 +50,7 @@ public class AgendaActivity extends AppCompatActivity{
         Bundle extras = intent.getExtras();
         if (extras!=null) {
             Pessoa pessoa = (Pessoa) extras.get("pessoaSel");
-            edId.setText(pessoa.getId().toString());
+            edId.setText(String.valueOf(pessoa.getId()));
             edNome.setText(pessoa.getNome());
         }
 
@@ -68,8 +69,7 @@ public class AgendaActivity extends AppCompatActivity{
         pessoa.setNome(nome);
 
 
-        BancoDeDados bancoDeDados =  new BancoDeDados(this);
-        bancoDeDados.salvar(pessoa);
+        pessoa.save();
 
         finish();
     }

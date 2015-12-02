@@ -10,7 +10,7 @@ import android.widget.TextView;
 import java.util.List;
 
 import br.com.fabricadeprogramador.fdpapp.R;
-import br.com.fabricadeprogramador.fdpapp.agenda.Pessoa;
+import br.com.fabricadeprogramador.fdpapp.agenda.model.Pessoa;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
@@ -45,7 +45,7 @@ public class PessoaListAdapter extends ArrayAdapter<Pessoa> {
 
         Pessoa pessoa = getItem(position);
         if (pessoa!=null) {
-            holder.id.setText(pessoa.getId().toString());
+            holder.id.setText(String.valueOf(pessoa.getId()));
             holder.nome.setText(pessoa.getNome());
             holder.imagem.setImageResource(pessoa.getImagem());
         }

@@ -17,12 +17,12 @@
 
         </activity>
 
-        <activity android:name=".agenda.AgendaActivity">
+        <activity android:name=".agenda.activities.AgendaActivity">
 
 
         </activity>
 
-        <activity android:name=".agenda.AgendaListaActivity">
+        <activity android:name=".agenda.activities.AgendaListaActivity">
             <intent-filter>
 
                 <action android:name="android.intent.action.MAIN"></action>

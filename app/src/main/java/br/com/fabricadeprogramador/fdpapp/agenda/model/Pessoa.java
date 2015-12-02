@@ -1,16 +1,44 @@
-package br.com.fabricadeprogramador.fdpapp.agenda;
+package br.com.fabricadeprogramador.fdpapp.agenda.model;
 
 import android.graphics.Bitmap;
 
 import java.io.Serializable;
 
+import se.emilsjolander.sprinkles.Model;
+import se.emilsjolander.sprinkles.annotations.AutoIncrement;
+import se.emilsjolander.sprinkles.annotations.Column;
+import se.emilsjolander.sprinkles.annotations.Key;
+import se.emilsjolander.sprinkles.annotations.Table;
+
 /**
  * Created by Virmerson on 11/10/15.
  */
-public class Pessoa implements Serializable {
+@Table("tbpessoa")
+public class Pessoa extends Model implements Serializable {
 
-    private Long id;
+    @Key
+    @AutoIncrement
+    @Column("id")
+    private long id;
+
+    @Column("nome")
     private String nome;
+
+
+    @Column("email")
+    private String email;
+
+    @Column("telefone")
+    private String telefone;
+
+    @Column("imagem")
+    private int imagem;
+
+    public Bitmap img;
+    public Pessoa(String nome, Bitmap imagem) {
+        this.nome = nome;
+        this.img = imagem;
+    }
 
     public String getEmail() {
         return email;
@@ -27,22 +55,11 @@ public class Pessoa implements Serializable {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    private String email;
-    private String telefone;
-    private int imagem;
-    public Bitmap img;
-    public Pessoa(String nome, Bitmap imagem) {
-        this.nome = nome;
-        this.img = imagem;
-    }
-
-
-    public Long getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(long id) {
         this.id = id;
     }
 

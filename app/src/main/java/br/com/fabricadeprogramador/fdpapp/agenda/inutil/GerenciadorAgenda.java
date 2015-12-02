@@ -1,7 +1,9 @@
-package br.com.fabricadeprogramador.fdpapp.agenda;
+package br.com.fabricadeprogramador.fdpapp.agenda.inutil;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import br.com.fabricadeprogramador.fdpapp.agenda.model.Pessoa;
 
 /**
  * Created by Virmerson on 11/5/15.
