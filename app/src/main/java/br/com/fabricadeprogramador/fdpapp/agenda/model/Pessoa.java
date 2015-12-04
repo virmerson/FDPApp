@@ -31,7 +31,7 @@ public class Pessoa extends Model implements Serializable {
     @Column("telefone")
     private String telefone;
 
-    @Column("imagem")
+
     private int imagem;
 
     public Bitmap img;
